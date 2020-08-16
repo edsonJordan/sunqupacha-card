@@ -4,6 +4,7 @@ body{
     width: calc(100vw - (100vw - 100%));        
 }
 .container__card{
+
 }
 .img_card{
     box-sizing: border-box;    
@@ -17,7 +18,7 @@ body{
     grid-gap: 10px;  
     width: 70%;
     grid-auto-flow: row dense;    
-    margin: 2rem;
+    margin: 2rem auto;
     text-align: center;
 }
 .card{      
@@ -40,22 +41,50 @@ body{
     top: 0;
     right: 0px;
     margin: .5rem;
-    border: 1px solid red;
-    min-width: 350px;
-    height: 100px;
+    background-color: white;
+    width: 380px;
+    min-width: 250px;
+    height: 400px;
+    overflow: hidden;
+    overflow-y: scroll;
 }
 .menu__items{
-    display: grid;   
+    display: grid;       
+    max-width: 28vw;
+    min-width: 28vw;
+
 }
+
 .card__menu{
-    display: inline-block;
+    display: grid;
+    grid-template-columns:  .6fr 1.4fr;    
+    grid-column: 130px;
+    grid-gap: 10px;      
+    grid-auto-flow: row dense;   
     margin: 0 auto; 
-    border: 1px solid blue;
+    border: 1px solid blue;    
 }
 /* Imagen menu */
-.img_menu{
-    box-sizing: border-box;    
-    object-fit: cover;    
-    width: 10%;
-    height: 20% ;
+.img_menu{    
+    display: block;
+    object-fit: contain;    
+    width: 50%;
+    height: 80%;
+    margin: auto;    
+}
+.menu__img{    
+    border: 1px solid orange;
+    min-width: 170px;
+    margin: auto 0;
+}
+.menu__content{    
+    border: 1px solid red;
+    min-width: 170px;
+    margin:  auto;
+}
+.menu__content>*{
+    margin: .1em auto;
+}
+.none{
+    display: none;
 }

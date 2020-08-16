@@ -19,7 +19,7 @@ $datos = $con->ProView();
             <?php 
             foreach ($datos as $data) {
             ?>
-            <div class="card">
+            <div class="card" att-type="<?php echo $data['name_category'] ?>">
             <!--Imagen-->            
             <img src="<?php echo "img/".$data['img_product'] ?>" class="img_card" alt="">
             <!-- Tittle -->
@@ -32,24 +32,27 @@ $datos = $con->ProView();
             }
             ?> 
         </div>        
-        <div class="menu__card">
+        <div class="menu__card  none">
             <label for="" class="menu__total">Total: <i class="total" >400</i> </label>
             <div class="menu__items">
                 <div class="card__menu">                                                                                
                     <?php 
                     foreach ($datos as $data) {
                     ?>                    
-                    <div class="menu__img">
-                    <!--Imagen-->                                
-                    <img src="<?php echo "img/".$data['img_product'] ?>" class="img_menu" alt="">
-                    </div>
-                    <div class="menu__content">                        
-                    <!-- Tittle -->
-                    <h3><?php echo $data['name_product'] ?></h3>   
-                    <!-- Price -->         
-                    <span><?php echo $data['price_product'] ?></span>             
-                    <a href="" class="button " > Agregar al carrito</a>
-                    </div>
+                        <div class="menu__img">
+                        <!--Imagen-->                                
+                        <img src="<?php echo "img/".$data['img_product'] ?>" class="img_menu" alt="">
+                        </div>
+                        <div class="menu__content">                        
+                        <!-- Tittle -->
+                        <h3><i><?php echo $data['name_product'] ?></i></h3>  
+                        <!-- Description --> 
+                        <p>Cantidad</p>
+                        <p>Subtotal</p>
+                        <!-- Price -->         
+                        <span><?php echo $data['price_product'] ?></span>             
+                        <a href="" class="button " > Agregar al carrito</a>
+                        </div>
                     
                     <?php
                     }
