@@ -1,6 +1,61 @@
 body{
     margin: 0;
     padding: 0;
-    width: calc(100vw - (100vw - 100%));    
+    width: calc(100vw - (100vw - 100%));        
 }
-
+.container__card{
+}
+.img_card{
+    box-sizing: border-box;    
+    object-fit: cover;    
+    height: 50%;
+}
+.content__card{
+    display: grid;
+    grid-template-columns:  repeat(auto-fit,minmax( 280px, 1fr));
+    grid-auto-rows: 250px;     
+    grid-gap: 10px;  
+    width: 70%;
+    grid-auto-flow: row dense;    
+    margin: 2rem;
+    text-align: center;
+}
+.card{      
+    margin: 2rem;    
+    box-shadow: 1px 1px 1px 1px rgb(0, 0, 0, 0.3);
+}
+.button{
+    text-decoration: none;
+    color: white;
+    border-radius: .7rem;
+    background-color: #FB900A;
+    letter-spacing: .1em;
+    padding: .2em;
+    margin: 1.3rem;
+    display: block;
+}
+/* Menu  cards */
+.menu__card{
+    position: fixed;    
+    top: 0;
+    right: 0px;
+    margin: .5rem;
+    border: 1px solid red;
+    min-width: 350px;
+    height: 100px;
+}
+.menu__items{
+    display: grid;   
+}
+.card__menu{
+    display: inline-block;
+    margin: 0 auto; 
+    border: 1px solid blue;
+}
+/* Imagen menu */
+.img_menu{
+    box-sizing: border-box;    
+    object-fit: cover;    
+    width: 10%;
+    height: 20% ;
+}

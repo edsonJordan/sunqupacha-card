@@ -1,7 +1,6 @@
 <?php 
 class Conexion{
         public $con;
-
         function __construct(){
         $conexion = new PDO("mysql:host=localhost;dbname=card_buy", 'root', '');
         $conexion->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -14,8 +13,12 @@ class Conexion{
         $consul->execute();
         return $consul->fetchAll();
         }
-    
-    
+        
+        function editStock(){
+                    
+
+        }
+        
 
 }
 
