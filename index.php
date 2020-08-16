@@ -1,7 +1,7 @@
 <?php 
 include 'conexion.php';
 $con = new Conexion();
-var_dump($con->ProView());
+/* var_dump($con->ProView()); */
 $datos = $con->ProView();
 ?>
 <!DOCTYPE html>
