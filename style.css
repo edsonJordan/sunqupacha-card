@@ -3,9 +3,71 @@ body{
     padding: 0;
     width: calc(100vw - (100vw - 100%));        
 }
-.container__card{
 
+/* Nav */
+
+.nav__container{
+    margin: 0;
+    padding: 0;
+    width: calc(100vw - (100vw - 100%)); 
+    display: flex;
+    background-color: blue;    
+    height: 3rem;
+    justify-content: space-between;
 }
+.nav__menu{    
+    display: inline-flex;
+    line-height: 45px;
+}
+.nav__ul{
+    display: inline-flex;    
+    margin:auto 0;
+    list-style: none;    
+}
+.nav_items{
+    color: white;
+    font-size: 25px;    
+    letter-spacing: 2px;
+    margin: 0 .4rem;    
+}
+.nav__icon{
+    display: inline-flex;    
+    margin: auto 2rem;   
+    border-radius: 25%;
+    padding: .4rem;
+    background-color: white;
+}
+.icon__buy{
+    object-fit: contain;
+    margin: 0;
+    height: 1.3rem;
+    width: 1.3rem;            
+}
+
+.link__icon{
+    margin: 0;
+}
+.check__input{
+    
+}
+
+.hola{
+    background-color: red;
+    width: 60px;
+    height: 60px;
+}
+
+.check__input:checked ~ .check__input{
+    width: 100px;
+}
+
+
+
+
+
+
+
+
 .img_card{
     box-sizing: border-box;    
     object-fit: cover;    
@@ -37,8 +99,9 @@ body{
 }
 /* Menu  cards */
 .menu__card{
+    display: block;
     position: fixed;    
-    top: 0;
+    top: 3.7rem;
     right: 0px;
     margin: .5rem;
     background-color: white;

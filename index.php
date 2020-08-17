@@ -14,8 +14,24 @@ $datos = $con->ProView();
     <title>Carrito de compras</title>
 </head>
 <body>
+      
+    <div class="nav__container">
+        <div class="nav__menu">
+            <ul class="nav__ul">
+                <li class="nav_items"><a>Libros</a></li>
+                <li class="nav_items"><a >Juguetes</a></li>
+            </ul>
+        </div>
+        <div class="nav__icon">        
+            <input type="checkbox" id="link__check" class="input__class none" >
+            <label for="link__check" class="link__icon" >
+                <img class="icon__buy" src="img/shopping-cart.svg" alt="">
+            </label>            
+        </div>                       
+    </div>      
+  
     <div class="container__card">
-        <div class="content__card">
+        <div class="content__card ">
             <?php 
             foreach ($datos as $data) {
             ?>
@@ -32,7 +48,7 @@ $datos = $con->ProView();
             }
             ?> 
         </div>        
-        <div class="menu__card  none">
+        <div class="menu__card none" id="menu__card">
             <label for="" class="menu__total">Total: <i class="total" >400</i> </label>
             <div class="menu__items">
                 <div class="card__menu">                                                                                
@@ -51,7 +67,7 @@ $datos = $con->ProView();
                         <p>Subtotal</p>
                         <!-- Price -->         
                         <span><?php echo $data['price_product'] ?></span>             
-                        <a href="" class="button " > Agregar al carrito</a>
+                        <a href="" class="button " > Eliminar </a>
                         </div>
                     
                     <?php
@@ -62,6 +78,7 @@ $datos = $con->ProView();
         </div>
     </div>
 
-<script src="script.js" type="module"></script>
+
 </body>
+<script src="script.js" type="module"></script>
 </html>
