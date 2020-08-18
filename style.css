@@ -35,8 +35,9 @@ body{
     margin: auto 2rem;   
     border-radius: 25%;
     padding: .4rem;
-    background-color: white;
+    background-color: white;    
 }
+
 .icon__buy{
     object-fit: contain;
     margin: 0;
@@ -45,6 +46,7 @@ body{
 }
 
 .link__icon{
+    cursor: pointer;
     margin: 0;
 }
 .check__input{
@@ -122,9 +124,8 @@ body{
     display: grid;
     grid-template-columns:  .6fr 1.4fr;    
     grid-column: 130px;
-    grid-gap: 10px;      
     grid-auto-flow: row dense;   
-    margin: 0 auto; 
+    margin: auto; 
     border: 1px solid blue;    
 }
 /* Imagen menu */
