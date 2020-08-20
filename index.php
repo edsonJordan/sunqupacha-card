@@ -42,7 +42,7 @@ $datos = $con->ProView();
             <h3><?php echo $data['name_product'] ?></h3>   
             <!-- Price -->         
             <span><?php echo $data['price_product'] ?></span>             
-            <a href="" class="button " > Agregar al carrito</a>
+            <a href="" class="button " > add to cart</a>
             </div>
             <?php
             }

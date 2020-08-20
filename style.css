@@ -12,6 +12,7 @@ body{
     width: calc(100vw - (100vw - 100%));        
     color: var(--color--dark--grey);
     background-color: var(--color--grey--light);
+    font-family:Verdana, Geneva, Tahoma, sans-serif, sans-serif;
 }
 
 /* Nav */
