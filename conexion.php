@@ -9,7 +9,13 @@ class Conexion{
             return $this->con;
         }
         function ProView(){
-        $consul = $this->con->prepare("SELECT p.cod_product, c.name_category, p.name_product, p.stock_product, p.price_product, p.img_product FROM product p, category c where p.cod_category=c.cod_category");
+        $consul = $this->con->prepare("SELECT p.cod_product, p.cod_product, c.name_category, p.name_product, p.stock_product, p.price_product, p.img_product FROM product p, category c where p.cod_category=c.cod_category");
+        $consul->execute();
+        return $consul->fetchAll();
+        }
+        function getCategory()
+        {
+        $consul = $this->con->prepare("SELECT name_category FROM category");
         $consul->execute();
         return $consul->fetchAll();
         }

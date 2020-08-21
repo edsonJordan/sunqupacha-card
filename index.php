@@ -1,8 +1,10 @@
 <?php 
 include 'conexion.php';
 $con = new Conexion();
-/* var_dump($con->ProView()); */
+/* Data products */
 $datos = $con->ProView();
+/* Types categorys */
+$category = $con->getCategory();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -17,9 +19,14 @@ $datos = $con->ProView();
       
     <div class="nav__container">
         <div class="nav__menu">
-            <ul class="nav__ul">
-                <li class="nav_items"><a>Libros</a></li>
-                <li class="nav_items"><a >Juguetes</a></li>
+            <ul class="nav__ul" id="nav__ul">
+                <?php 
+                 foreach ($category as $data) {
+                     ?>
+                  <li><a class="nav_items <?php echo strtolower($data['name_category']); ?>" id="<?php echo strtolower($data['name_category']); ?>" ><?php echo $data['name_category'] ?> </a></li> 
+                     <?php 
+                 }
+                ?>                                
             </ul>
         </div>
         <div class="nav__icon">        
@@ -29,50 +36,48 @@ $datos = $con->ProView();
             </label>            
         </div>                       
     </div>      
-  
     <div class="container__card">
-        <div class="content__card ">
+        <div class="content__card" id="content__card">
             <?php 
             foreach ($datos as $data) {
-            ?>
-            <div class="card" att-type="<?php echo $data['name_category'] ?>">
+            ?>            
+            
+            <div class="card <?php echo strtolower($data['name_category']) ?>" id="<?php echo 'product-'.$data['cod_product'] ; ?>">            
+            <form class="form__card">
             <!--Imagen-->            
-            <img src="<?php echo "img/".$data['img_product'] ?>" class="img_card" alt="">
+            <img src="<?php echo "img/".$data['img_product']?>" class="img_card" alt="">
             <!-- Tittle -->
             <h3><?php echo $data['name_product'] ?></h3>   
             <!-- Price -->         
-            <span><?php echo $data['price_product'] ?></span>             
-            <a href="" class="button " > add to cart</a>
-            </div>
+            <span class="span__product" ><?php echo $data['price_product'] ?></span>             
+            <input type="number" class="product_number" max="<?php echo $data['stock_product'] ?>" maxlength="3" min="1" value="<?php echo $data['stock_product'] ?>" >
+            <input type="submit" class="button" attr-value="<?php echo $data["price_product"] ?>" value="add to cart"  > </input>                
+        </form>    
+        </div>           
             <?php
             }
             ?> 
         </div>        
-        <div class="menu__card none" id="menu__card">
-            <label for="" class="menu__total">Total: <i class="total" >400</i> </label>
+        <div class="menu__card none" attr-total='1000' id="menu__card">
+            <!-- <label for="" class="menu__total">Total: <i class="total" >400</i> </label> -->
             <div class="menu__items">
-                <div class="card__menu">                                                                                
-                    <?php 
-                    foreach ($datos as $data) {
-                    ?>                    
-                        <div class="menu__img">
-                        <!--Imagen-->                                
-                        <img src="<?php echo "img/".$data['img_product'] ?>" class="img_menu" alt="">
+                <div class="card__menu" id="card__menu">                                                                                
+                  <!--   <?php 
+                    //foreach ($datos as $data) {
+                    ?>                   
+                        <div class="menu__img">                                                     
+                        <img src="<?php // echo "img/".$data['img_product'] ?>" class="img_menu" alt="">
                         </div>
-                        <div class="menu__content">                        
-                        <!-- Tittle -->
-                        <h3><i><?php echo $data['name_product'] ?></i></h3>  
-                        <!-- Description --> 
-                        <p>Cantidad</p>
-                        <p>Subtotal</p>
-                        <!-- Price -->         
-                        <span><?php echo $data['price_product'] ?></span>             
-                        <a href="" class="button " > Eliminar </a>
-                        </div>
-                    
+                        <div class="menu__content">                                                
+                        <h3><i><?php // echo $data['name_product'] ?></i></h3>                          
+                            <p>Cantidad</p>
+                            <p>Subtotal</p>                                
+                        <span><?php // echo $data['price_product'] ?></span>             
+                        <a href="" class="button cart" > Eliminar </a>
+                        </div>                    
                     <?php
-                    }
-                    ?> 
+                     //}
+                    ?>  -->
                 </div>
             </div>
         </div>
