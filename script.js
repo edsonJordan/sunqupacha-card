@@ -1,3 +1,20 @@
+window.addEventListener('load', (e)=>{
+const data = readLocal();
+if(!data){    
+    return
+}
+setTimeout(() => {
+    for (const iterator of data) {
+        let node = document.getElementById(iterator.node_stock);
+        if(node.max=="0"){                
+         node.nextElementSibling.remove();             
+        }
+    }        
+}, 1);
+paintCart(data);
+});
+
+
 const card = document.getElementById("menu__card");
 const check = document.getElementById("link__check");
 check?.addEventListener('change', (e)=>{            
@@ -39,19 +56,22 @@ menu.addEventListener('click', (e)=>{
         /* Cant  */        //console.log(e.target[0].value);
         /* Price */  // console.log(e.target[1].getAttribute("attr-value"));
         /* Name item */ //console.log(e.target[1].getAttribute("attr-item"));                                                              
-           const data = [{codigo : [parent[1]], name: [e.target[1].getAttribute("attr-item")], imagen:[e.target.childNodes[3].getAttribute('src')],
-            cantidad: e.target[0].value, precio: [e.target[1].getAttribute("attr-value")], stock: e.target[0].getAttribute("max"), node_stock: e.target[0].id }]
-            addCart(data);
+           const data = [{codigo : parent[1], name: e.target[1].getAttribute("attr-item"), imagen:e.target.childNodes[3].getAttribute('src'),
+            cantidad: e.target[0].value, precio: e.target[1].getAttribute("attr-value"), stock: e.target[0].getAttribute("max"), node_stock: e.target[0].id }]            
+            setLocal(data);
+            /* console.log(readLocal());
+            console.log(data); */            
+            paintCart(readLocal());                    
             const pr = document.getElementById(e.target[0].id);                    
-            if(pr.max == "0"){                                                                
-                console.log();
+            if(pr.max == "0"){                                                                                
                 e.target[1].remove()
-            }
-            
-            
+            }                        
     })
-    const addCart=(datos)=>{                                               
-            const node = document.getElementById("card__menu");
+    const paintCart=(datos)=>{                                                          
+            const node = document.getElementById("card__menu");        
+            while (node.firstChild) {
+                node.firstChild.remove();
+            }
             const fragmentnode =document.createDocumentFragment(); 
             const fragmentPat = document.createDocumentFragment();
             const fragmentchild1 =document.createDocumentFragment();
@@ -98,10 +118,38 @@ menu.addEventListener('click', (e)=>{
     }
 const calcStock=(nodeStock, stock, order)=>{        
     const calc= parseInt(stock) - parseInt(order);    
-    const nodes  = document.getElementById(nodeStock);        
+    const nodes  = document.getElementById(nodeStock);
+    nodes.removeAttribute("max")            
     nodes.setAttribute("max", calc)
     nodes.value=calc;
 }
+const setLocal=(data)=>{
+    const readLocal= JSON.parse(localStorage.getItem('orderCart'));    
+    if(!readLocal){
+        localStorage.setItem('orderCart', JSON.stringify(data));
+    }else{        
+        readLocal[readLocal.length]=data[0];        
+        localStorage.setItem('orderCart', JSON.stringify(readLocal));
+    }
+}
+const readLocal=()=>{
+    return JSON.parse(localStorage.getItem('orderCart'));
+}
 
-
-
+const deleItem=(index)=>{
+    const order = JSON.parse(localStorage.getItem('orderCart'));
+    console.log(index);    
+   /*  for(const data of order){
+        if(data.codigo == index.codigo){
+            data[Object.index(data)].slice();
+            break;
+        }
+    } */
+}
+const cartMenu= document.getElementById("card__menu");
+cartMenu.addEventListener('click', (e)=>{
+    if(e.target.nodeName == "a"){
+        console.log("click a");
+        
+    }
+})
