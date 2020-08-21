@@ -40,8 +40,7 @@ $category = $con->getCategory();
         <div class="content__card" id="content__card">
             <?php 
             foreach ($datos as $data) {
-            ?>            
-            
+            ?>                    
             <div class="card <?php echo strtolower($data['name_category']) ?>" id="<?php echo 'product-'.$data['cod_product'] ; ?>">            
             <form class="form__card">
             <!--Imagen-->            
@@ -50,8 +49,8 @@ $category = $con->getCategory();
             <h3><?php echo $data['name_product'] ?></h3>   
             <!-- Price -->         
             <span class="span__product" ><?php echo $data['price_product'] ?></span>             
-            <input type="number" class="product_number" max="<?php echo $data['stock_product'] ?>" maxlength="3" min="1" value="<?php echo $data['stock_product'] ?>" >
-            <input type="submit" class="button" attr-value="<?php echo $data["price_product"] ?>" value="add to cart"  > </input>                
+            <input type="number" class="product_number" id="<?php echo "stockItem-".$data['cod_product']; ?>" max="<?php echo $data['stock_product'] ?>" maxlength="3" min="1"  value="<?php echo $data['stock_product'] ?>" required >
+            <input type="submit" class="button" attr-item="<?php echo $data["name_product"] ?>" attr-value="<?php echo $data["price_product"] ?>" value="add to cart"  > </input>                
         </form>    
         </div>           
             <?php
@@ -61,15 +60,11 @@ $category = $con->getCategory();
         <div class="menu__card none" attr-total='1000' id="menu__card">
             <!-- <label for="" class="menu__total">Total: <i class="total" >400</i> </label> -->
             <div class="menu__items">
-                <div  id="card__menu">                                   
-                       
+                <div  id="card__menu">                                                          
                 </div>
-
             </div>
         </div>
     </div>
-
-
 </body>
 <script src="script.js" type="module"></script>
 </html>

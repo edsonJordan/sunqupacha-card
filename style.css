@@ -164,6 +164,7 @@ body{
     content: attr(attr-total);    
     display: block;
 }
+
 .menu__items{
     display: grid;       
     /* max-width: 28vw;
@@ -195,7 +196,17 @@ body{
     min-width: 170px;
     margin:  auto;
 }
+.span-precio::before{
+    content: "Precio: ";
+}
+.span-cantidad::before{
+    content:"Cantidad: "
+}
+.span-subtotal::before{
+    content:"Subtotal: "
+}
 .menu__content>*{
+    display: block;
     margin: .1em auto;
 }
 .card.none{

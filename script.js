@@ -10,7 +10,7 @@ menu.addEventListener('click', (e)=>{
     if(sItem.classList[2] == undefined ){
         sItem.classList.add("active")                
     }    
-    /* Remove active */
+    /* Remove active  cards*/
     const menus = menu.getElementsByTagName("a");
     for(const data of menus){              
         let Gmenus= document.getElementById(data.id);
@@ -18,7 +18,7 @@ menu.addEventListener('click', (e)=>{
             Gmenus.classList.remove('active')
         }                                
     }
-    /* Remove display */
+    /* Remove display none cards */
     const cards = document.getElementById("content__card").getElementsByTagName("div");          
     for(const data of cards){           
             let gCards = document.getElementById(data.id);
@@ -37,20 +37,26 @@ menu.addEventListener('click', (e)=>{
         /* ID PRODUCT */ //console.log(parent[1]);                     
         /* iMAGEN PRODUCT */ //console.log(e.target.childNodes[3].getAttribute('src'));
         /* Cant  */        //console.log(e.target[0].value);
-        /* Price */  // console.log(e.target[1].getAttribute("attr-value"));              
-           const data = [{codigo : [parent[1]], imagen:[e.target.childNodes[3].getAttribute('src')],
-            cantidad: [e.target[0].value], precio: [e.target[1].getAttribute("attr-value")] }]
+        /* Price */  // console.log(e.target[1].getAttribute("attr-value"));
+        /* Name item */ //console.log(e.target[1].getAttribute("attr-item"));                                                              
+           const data = [{codigo : [parent[1]], name: [e.target[1].getAttribute("attr-item")], imagen:[e.target.childNodes[3].getAttribute('src')],
+            cantidad: e.target[0].value, precio: [e.target[1].getAttribute("attr-value")], stock: e.target[0].getAttribute("max"), node_stock: e.target[0].id }]
             addCart(data);
+            const pr = document.getElementById(e.target[0].id);                    
+            if(pr.max == "0"){                                                                
+                console.log();
+                e.target[1].remove()
+            }
+            
+            
     })
     const addCart=(datos)=>{                                               
             const node = document.getElementById("card__menu");
             const fragmentnode =document.createDocumentFragment(); 
-
             const fragmentPat = document.createDocumentFragment();
             const fragmentchild1 =document.createDocumentFragment();
             const fragmentchild2 = document.createDocumentFragment();
             for(const data of datos){
-
                 const nodePatn= document.createElement("div")
                 nodePatn.id= data.codigo;
                 nodePatn.classList.add("card__menu")
@@ -59,27 +65,43 @@ menu.addEventListener('click', (e)=>{
                 nodeChild1.classList.add("menu__img")
                 img.setAttribute("src", data.imagen);
                 img.classList.add("img_menu")                
-                nodeChild1.appendChild(img);
-                
+                nodeChild1.appendChild(img);                
                 fragmentchild1.appendChild(nodeChild1);
                 const nodeChild2= document.createElement("div");
                 const eH3 = document.createElement("h3")                
                 const eSpan = document.createElement("span");
+                const eSpan2= document.createElement("span")
+                const eSpan3= document.createElement("span")
                 const eA = document.createElement("a")
                 nodeChild2.classList.add("menu__content");
-                eH3.textContent=data.cantidad;
+                eH3.textContent=data.name;                                     
                 eSpan.textContent= data.precio;
+                eSpan.classList.add("span-precio")                                
+                eSpan2.textContent= data.cantidad
+                eSpan2.classList.add("span-cantidad")                                
+                eSpan3.textContent= parseFloat(parseFloat(data.cantidad) * parseFloat(data.precio)).toFixed(2) 
+                eSpan3.classList.add("span-subtotal")                                
                 eA.classList.add("button", "cart"); 
-                eA.textContent="Eliminar"               
+                eA.textContent="Eliminar";                  
+                calcStock(data.node_stock, data.stock, data.cantidad)
                 nodeChild2.appendChild(eH3);
                 nodeChild2.appendChild(eSpan);
+                nodeChild2.appendChild(eSpan2);
+                nodeChild2.appendChild(eSpan3);
                 nodeChild2.appendChild(eA);
                 fragmentchild2.appendChild(nodeChild2);
-
                 fragmentPat.appendChild(fragmentchild1);
                 fragmentPat.appendChild(fragmentchild2);
-
                 nodePatn.appendChild(fragmentPat);         
                 node.appendChild(nodePatn);       
             }                       
     }
+const calcStock=(nodeStock, stock, order)=>{        
+    const calc= parseInt(stock) - parseInt(order);    
+    const nodes  = document.getElementById(nodeStock);        
+    nodes.setAttribute("max", calc)
+    nodes.value=calc;
+}
+
+
+
