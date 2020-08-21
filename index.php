@@ -61,24 +61,10 @@ $category = $con->getCategory();
         <div class="menu__card none" attr-total='1000' id="menu__card">
             <!-- <label for="" class="menu__total">Total: <i class="total" >400</i> </label> -->
             <div class="menu__items">
-                <div class="card__menu" id="card__menu">                                                                                
-                  <!--   <?php 
-                    //foreach ($datos as $data) {
-                    ?>                   
-                        <div class="menu__img">                                                     
-                        <img src="<?php // echo "img/".$data['img_product'] ?>" class="img_menu" alt="">
-                        </div>
-                        <div class="menu__content">                                                
-                        <h3><i><?php // echo $data['name_product'] ?></i></h3>                          
-                            <p>Cantidad</p>
-                            <p>Subtotal</p>                                
-                        <span><?php // echo $data['price_product'] ?></span>             
-                        <a href="" class="button cart" > Eliminar </a>
-                        </div>                    
-                    <?php
-                     //}
-                    ?>  -->
+                <div  id="card__menu">                                   
+                       
                 </div>
+
             </div>
         </div>
     </div>

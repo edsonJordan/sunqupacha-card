@@ -37,15 +37,49 @@ menu.addEventListener('click', (e)=>{
         /* ID PRODUCT */ //console.log(parent[1]);                     
         /* iMAGEN PRODUCT */ //console.log(e.target.childNodes[3].getAttribute('src'));
         /* Cant  */        //console.log(e.target[0].value);
-        /* Price */  // console.log(e.target[1].getAttribute("attr-value"));      
-        addCart();
+        /* Price */  // console.log(e.target[1].getAttribute("attr-value"));              
+           const data = [{codigo : [parent[1]], imagen:[e.target.childNodes[3].getAttribute('src')],
+            cantidad: [e.target[0].value], precio: [e.target[1].getAttribute("attr-value")] }]
+            addCart(data);
     })
-    const addCart=()=>{
-            const datos = ["codigo", "imagen", "cantidad" , "precio" ];
-            
-         
+    const addCart=(datos)=>{                                               
+            const node = document.getElementById("card__menu");
+            const fragmentnode =document.createDocumentFragment(); 
+
+            const fragmentPat = document.createDocumentFragment();
+            const fragmentchild1 =document.createDocumentFragment();
+            const fragmentchild2 = document.createDocumentFragment();
             for(const data of datos){
-                console.log(data);
+
+                const nodePatn= document.createElement("div")
+                nodePatn.id= data.codigo;
+                nodePatn.classList.add("card__menu")
+                const nodeChild1 = document.createElement("div");
+                const img= document.createElement("img");
+                nodeChild1.classList.add("menu__img")
+                img.setAttribute("src", data.imagen);
+                img.classList.add("img_menu")                
+                nodeChild1.appendChild(img);
                 
-            }
+                fragmentchild1.appendChild(nodeChild1);
+                const nodeChild2= document.createElement("div");
+                const eH3 = document.createElement("h3")                
+                const eSpan = document.createElement("span");
+                const eA = document.createElement("a")
+                nodeChild2.classList.add("menu__content");
+                eH3.textContent=data.cantidad;
+                eSpan.textContent= data.precio;
+                eA.classList.add("button", "cart"); 
+                eA.textContent="Eliminar"               
+                nodeChild2.appendChild(eH3);
+                nodeChild2.appendChild(eSpan);
+                nodeChild2.appendChild(eA);
+                fragmentchild2.appendChild(nodeChild2);
+
+                fragmentPat.appendChild(fragmentchild1);
+                fragmentPat.appendChild(fragmentchild2);
+
+                nodePatn.appendChild(fragmentPat);         
+                node.appendChild(nodePatn);       
+            }                       
     }

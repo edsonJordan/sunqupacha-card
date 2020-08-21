@@ -73,7 +73,6 @@ body{
     width: 60px;
     height: 60px;
 }
-
 .check__input:checked ~ .check__input{
     width: 100px;
 }
@@ -81,7 +80,6 @@ body{
     margin: 0;
     padding: 0;
 }
-
 .img_card{
     display: block;
     margin: 2rem auto;
