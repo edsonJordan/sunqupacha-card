@@ -49,7 +49,8 @@ $category = $con->getCategory();
             <h3><?php echo $data['name_product'] ?></h3>   
             <!-- Price -->         
             <span class="span__product" ><?php echo $data['price_product'] ?></span>             
-            <input type="number" class="product_number" id="<?php echo "stockItem-".$data['cod_product']; ?>" max="<?php  echo $data['stock_product'] ?>" maxlength="3" min="1"  value="<?php echo $data['stock_product'] ?>" required >
+            <input type="number" class="product_number" id="<?php echo "stockItem-".$data['cod_product']; ?>" max="<?php  echo $data['stock_product'] ?>" maxlength="3" min="1" 
+             value="<?php echo $data['stock_product'] ?>" required  > 
             <input type="submit" class="button" attr-item="<?php echo $data["name_product"] ?>" attr-value="<?php echo $data["price_product"] ?>" value="add to cart"  > </input>                
         </form>    
         </div>           

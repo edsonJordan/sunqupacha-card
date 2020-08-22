@@ -61,7 +61,6 @@ menu.addEventListener('click', (e)=>{
             console.log(data); */            
             paintCart(readLocal());                    
             const pr = document.getElementById(e.target[0].id);
-
             if(pr.max == "0"){                                                                                
                 e.target[1].remove()
             }                        
@@ -148,7 +147,7 @@ cartMenu.addEventListener('click', (e)=>{
                 //console.log(ite);                                
                 const nodeStock= document.getElementById(dataLocal[0].node_stock);
                 //console.log(dataLocal[ite]);                    
-                if(nodeStock.max == "0"){                                    
+                /* if(nodeStock.max == "0"){                                    
                 const elemen = document.createElement("input");
                 const fragment = document.createDocumentFragment();
                 elemen.classList.add("button")
@@ -158,13 +157,16 @@ cartMenu.addEventListener('click', (e)=>{
                 elemen.setAttribute("attr-item", dataLocal[ite].name)
                 fragment.appendChild(elemen)
                 nodeStock.parentNode.appendChild(fragment)                
-                }
-                const reStock = parseInt(dataLocal[ite].cantidad) + parseInt(nodeStock.max);                                 
+                } */
+                console.log(dataLocal[ite]);
+                
+                /* const reStock = parseInt(dataLocal[ite].cantidad) + parseInt(nodeStock.max);
+                console.log(reStock);                                             
                 nodeStock.setAttribute("max", reStock);
                 nodeStock.setAttribute("value", reStock);
-                dataLocal.splice(ite, 1);                
-                localStorage.setItem('orderCart', JSON.stringify(dataLocal))
-                e.target.parentNode.parentNode.remove();                
+                dataLocal.splice(ite, 1); */                
+               /*  localStorage.setItem('orderCart', JSON.stringify(dataLocal))
+                e.target.parentNode.parentNode.remove();  */               
                 break;                                       
               }       
 
