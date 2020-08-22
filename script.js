@@ -6,15 +6,13 @@ if(!data){
 setTimeout(() => {
     for (const iterator of data) {
         let node = document.getElementById(iterator.node_stock);
-        if(node.max=="0"){                
+        if(node.max === "0"  ){                            
          node.nextElementSibling.remove();             
         }
     }        
 }, 1);
 paintCart(data);
 });
-
-
 const card = document.getElementById("menu__card");
 const check = document.getElementById("link__check");
 check?.addEventListener('change', (e)=>{            
@@ -26,7 +24,7 @@ menu.addEventListener('click', (e)=>{
     let sItem= document.getElementById(e.target.id)    
     if(sItem.classList[2] == undefined ){
         sItem.classList.add("active")                
-    }    
+    }        
     /* Remove active  cards*/
     const menus = menu.getElementsByTagName("a");
     for(const data of menus){              
@@ -62,7 +60,8 @@ menu.addEventListener('click', (e)=>{
             /* console.log(readLocal());
             console.log(data); */            
             paintCart(readLocal());                    
-            const pr = document.getElementById(e.target[0].id);                    
+            const pr = document.getElementById(e.target[0].id);
+
             if(pr.max == "0"){                                                                                
                 e.target[1].remove()
             }                        
@@ -102,6 +101,7 @@ menu.addEventListener('click', (e)=>{
                 eSpan3.textContent= parseFloat(parseFloat(data.cantidad) * parseFloat(data.precio)).toFixed(2) 
                 eSpan3.classList.add("span-subtotal")                                
                 eA.classList.add("button", "cart"); 
+                eA.setAttribute("attr-order", data.codigo)
                 eA.textContent="Eliminar";                  
                 calcStock(data.node_stock, data.stock, data.cantidad)
                 nodeChild2.appendChild(eH3);
@@ -135,21 +135,41 @@ const setLocal=(data)=>{
 const readLocal=()=>{
     return JSON.parse(localStorage.getItem('orderCart'));
 }
-
-const deleItem=(index)=>{
-    const order = JSON.parse(localStorage.getItem('orderCart'));
-    console.log(index);    
-   /*  for(const data of order){
-        if(data.codigo == index.codigo){
-            data[Object.index(data)].slice();
-            break;
-        }
-    } */
-}
 const cartMenu= document.getElementById("card__menu");
-cartMenu.addEventListener('click', (e)=>{
-    if(e.target.nodeName == "a"){
-        console.log("click a");
-        
+cartMenu.addEventListener('click', (e)=>{        
+    if(e.target.nodeName === "A"){
+        const elSelect= e.target.getAttribute("attr-order");
+        const dataLocal = readLocal("orderCart");
+        //console.log(dataLocal);                
+          for (const ite in Object.values(dataLocal)) {                            
+              //console.log(dataLocal[ite]);              
+            //console.log(dataLocal.indexOf(ite));
+              if(dataLocal[ite].codigo == elSelect){                  
+                //console.log(ite);                                
+                const nodeStock= document.getElementById(dataLocal[0].node_stock);
+                //console.log(dataLocal[ite]);                    
+                if(nodeStock.max == "0"){                                    
+                const elemen = document.createElement("input");
+                const fragment = document.createDocumentFragment();
+                elemen.classList.add("button")
+                elemen.value="add to cart";
+                elemen.setAttribute("type", "submit")
+                elemen.setAttribute("attr-value", dataLocal[ite].precio)
+                elemen.setAttribute("attr-item", dataLocal[ite].name)
+                fragment.appendChild(elemen)
+                nodeStock.parentNode.appendChild(fragment)                
+                }
+                const reStock = parseInt(dataLocal[ite].cantidad) + parseInt(nodeStock.max);                                 
+                nodeStock.setAttribute("max", reStock);
+                nodeStock.setAttribute("value", reStock);
+                dataLocal.splice(ite, 1);                
+                localStorage.setItem('orderCart', JSON.stringify(dataLocal))
+                e.target.parentNode.parentNode.remove();                
+                break;                                       
+              }       
+
+          }  
+                
     }
+    
 })
