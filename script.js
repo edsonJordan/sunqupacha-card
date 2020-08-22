@@ -55,11 +55,37 @@ menu.addEventListener('click', (e)=>{
         /* Price */  // console.log(e.target[1].getAttribute("attr-value"));
         /* Name item */ //console.log(e.target[1].getAttribute("attr-item"));                                                              
            const data = [{codigo : parent[1], name: e.target[1].getAttribute("attr-item"), imagen:e.target.childNodes[3].getAttribute('src'),
-            cantidad: e.target[0].value, precio: e.target[1].getAttribute("attr-value"), stock: e.target[0].getAttribute("max"), node_stock: e.target[0].id }]            
-            setLocal(data);
-            /* console.log(readLocal());
-            console.log(data); */            
-            paintCart(readLocal());                    
+            cantidad: e.target[0].value, precio: e.target[1].getAttribute("attr-value"), stock: e.target[0].getAttribute("max"), node_stock: e.target[0].id }]                                                                          
+            if(readLocal() && readLocal().length > 0){ 
+                const getLocal =readLocal();                       
+                for (const iterator of getLocal){                                                            
+                    if(iterator.codigo == data[0].codigo){                        
+                        let addCant = parseInt(iterator.cantidad) + parseInt(data[0].cantidad) ;
+                        console.log("La acumulacion es "+ addCant);
+                        iterator.cantidad=String(addCant);                                                                                            
+                        let key = getLocal.indexOf(iterator);                        
+                        getLocal[key]=iterator;                                                                                                
+                        console.log(getLocal);
+                        localStorage.removeItem("orderCart")                        
+                        setLocal(getLocal);                      
+                        paintCart(getLocal);
+                        const pr = document.getElementById(e.target[0].id);
+                        if(pr.max == "0"){                                                                                
+                            e.target[1].remove()
+                        }                                                                        
+                        return
+                        break
+                    }
+                                                             
+                }
+                        setLocal(data);
+                        paintCart(readLocal());
+                        console.log("No Se repite");                            
+            }else{
+                setLocal(data)
+                paintCart(readLocal());  
+                console.log("No esta vacio");
+            }                                            
             const pr = document.getElementById(e.target[0].id);
             if(pr.max == "0"){                                                                                
                 e.target[1].remove()
@@ -147,7 +173,7 @@ cartMenu.addEventListener('click', (e)=>{
                 //console.log(ite);                                
                 const nodeStock= document.getElementById(dataLocal[0].node_stock);
                 //console.log(dataLocal[ite]);                    
-                /* if(nodeStock.max == "0"){                                    
+                if(nodeStock.max == "0"){                                    
                 const elemen = document.createElement("input");
                 const fragment = document.createDocumentFragment();
                 elemen.classList.add("button")
@@ -157,16 +183,13 @@ cartMenu.addEventListener('click', (e)=>{
                 elemen.setAttribute("attr-item", dataLocal[ite].name)
                 fragment.appendChild(elemen)
                 nodeStock.parentNode.appendChild(fragment)                
-                } */
-                console.log(dataLocal[ite]);
-                
-                /* const reStock = parseInt(dataLocal[ite].cantidad) + parseInt(nodeStock.max);
-                console.log(reStock);                                             
+                }                                
+                const reStock = parseInt(dataLocal[ite].cantidad) + parseInt(nodeStock.max);                                                           
                 nodeStock.setAttribute("max", reStock);
                 nodeStock.setAttribute("value", reStock);
-                dataLocal.splice(ite, 1); */                
-               /*  localStorage.setItem('orderCart', JSON.stringify(dataLocal))
-                e.target.parentNode.parentNode.remove();  */               
+                dataLocal.splice(ite, 1);                
+                localStorage.setItem('orderCart', JSON.stringify(dataLocal))
+                e.target.parentNode.parentNode.remove();                
                 break;                                       
               }       
 
