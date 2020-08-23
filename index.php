@@ -31,8 +31,8 @@ $category = $con->getCategory();
         </div>
         <div class="nav__icon">        
             <input type="checkbox" id="link__check" class="input__class none" >
-            <label for="link__check" class="link__icon" >
-                <img class="icon__buy" src="img/shopping-cart.svg" alt="">
+            <label id="icon-shoping" attr-count="0" for="link__check" class="link__icon" >
+                <img  class="icon__buy" src="img/shopping-cart.svg" alt="">
             </label>            
         </div>                       
     </div>      

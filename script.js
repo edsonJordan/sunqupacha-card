@@ -1,4 +1,5 @@
 window.addEventListener('load', (e)=>{
+    countLocal();
 const data = readLocal();
 if(!data){    
     return
@@ -80,6 +81,7 @@ menu.addEventListener('click', (e)=>{
                 }
                         setLocal(data);
                         paintCart(readLocal());
+                        
                      //   console.log("No Se repite");                            
             }else{
                 setLocal(data)
@@ -89,7 +91,8 @@ menu.addEventListener('click', (e)=>{
             const pr = document.getElementById(e.target[0].id);
             if(pr.max == "0"){                                                                                
                 e.target[1].remove()
-            }                        
+            }
+            countLocal();                        
     })
     const paintCart=(datos)=>{                                                          
             const node = document.getElementById("card__menu");        
@@ -187,13 +190,27 @@ cartMenu.addEventListener('click', (e)=>{
                     nodeStock.setAttribute("value", reStock);
                     dataLocal.splice(dataLocal.indexOf(iterator), 1);   
                     localStorage.setItem('orderCart', JSON.stringify(dataLocal))
-                    e.target.parentNode.parentNode.remove();               
+                    e.target.parentNode.parentNode.remove();  
+                    countLocal()             
                     break; 
                 }                                                                               
         }                                  
     }
     
 })
-const calcItems =()=>{
+const countLocal =()=>{
+     const count = document.getElementById("icon-shoping");
+     count.setAttribute("attr-count", readLocal().length)
+    
+     const node = document.getElementById("menu__card");
+    let total = 0;
+     for (const iterator of readLocal()) {
+         //console.log(iterator.precio + " y la cantidad es " +iterator.cantidad);         
+         let subtotal = (parseFloat(iterator.precio) * parseFloat(iterator.cantidad)).toFixed(2) 
+         total += parseFloat(subtotal);
+     }
+     node.setAttribute("attr-total", total)
+     
     
 }
+

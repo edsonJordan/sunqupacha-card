@@ -58,7 +58,14 @@ body{
     margin: 0;
     height: 1.3rem;
     width: 1.3rem;            
-  fill: red;
+    fill: red;
+}
+.link__icon::before{
+    display: inline-block;
+    margin: auto;
+    position: relative;    
+    content: attr(attr-count);
+    color: white;
 }
 
 .link__icon{
