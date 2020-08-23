@@ -59,7 +59,6 @@ $category = $con->getCategory();
             ?> 
         </div>        
         <div class="menu__card none" attr-total='1000' id="menu__card">
-            <!-- <label for="" class="menu__total">Total: <i class="total" >400</i> </label> -->
             <div class="menu__items">
                 <div  id="card__menu">                                                          
                 </div>
