@@ -15,11 +15,11 @@ $category = $con->getCategory();
     <link rel="stylesheet" href="style.css">
     <title>Carrito de compras</title>
 </head>
-<body>
-      
+<body>      
     <div class="nav__container">
         <div class="nav__menu">
-            <ul class="nav__ul" id="nav__ul">
+            <li class="nav__admin"> <a href="admin.php" class="nav_items">Admin</a> </li>
+            <ul class="nav__ul" id="nav__ul">                
                 <?php 
                  foreach ($category as $data) {
                      ?>

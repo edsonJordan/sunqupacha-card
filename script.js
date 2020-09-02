@@ -21,7 +21,10 @@ check?.addEventListener('change', (e)=>{
 })
 const menu = document.getElementById("nav__ul");
 /* Listener menus active */
-menu.addEventListener('click', (e)=>{    
+menu.addEventListener('click', (e)=>{       
+    if(e.target.nodeName !== "A"){
+            return
+    }
     let sItem= document.getElementById(e.target.id)    
     if(sItem.classList[2] == undefined ){
         sItem.classList.add("active")                
@@ -44,7 +47,11 @@ menu.addEventListener('click', (e)=>{
             }else{
                 gCards.classList.remove("none")
             }                                 
-    }        
+    } 
+    
+    
+
+
 })
     const nodeCard= document.getElementById("content__card");
     nodeCard.addEventListener('submit', (e)=>{        
