@@ -41,6 +41,6 @@
             </div>
         </div>                            
     </div>
-    <script src="admin.js"></script>  
+    <script src="./rest/script/admin.js"></script>  
 </body>
 </html>

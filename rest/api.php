@@ -1,6 +1,6 @@
 <?php
-include 'conexion.php';
-class Api extends Conexion{        
+include '../conexion.php';
+class Api{        
     public $con;
     function __construct(){    
         $this->con = new Conexion();         
@@ -12,16 +12,16 @@ class Api extends Conexion{
         {
             echo "hay un get";
         } */
-
         header('Content-Type: application/json; charset=utf-8');        
         //var_dump($view);
         echo(json_encode($view));        
     }
 }
 $api = new Api();
-if ($_SERVER['REQUEST_METHOD'] == 'GET')
+echo "gola";
+/* if ($_SERVER['REQUEST_METHOD'] == 'GET')
 {
 echo $api->Produc();
-}
+} */
 
 ?>
